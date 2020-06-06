@@ -12,15 +12,33 @@ import java.util.ArrayList;
 
 public class RecyclerFireViewModel extends ViewModel {
     Repository repo;
+    public ArrayList<Ciudadano> listac= new ArrayList<>();
+    MutableLiveData<ArrayList<Ciudadano>> livelistac;
 
 
     public RecyclerFireViewModel(){
         repo=Repository.getRepository();
+        listac = new ArrayList<>();
+        livelistac= new MutableLiveData<ArrayList<Ciudadano>>();
 
 
     }
 
     public void getClientes() {
         repo.getCiud();
+        repo.getLiveList().observeForever(new Observer<ArrayList<Ciudadano>>() {
+            @Override
+            public void onChanged(ArrayList<Ciudadano> ciudadanos) {
+                listac = ciudadanos;
+                livelistac.postValue(listac);
+
+            }
+        });
     }
+
+    public LiveData<ArrayList<Ciudadano>> getLiveList(){
+        return livelistac;
+    }
+
+
 }

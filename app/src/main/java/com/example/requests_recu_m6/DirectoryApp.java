@@ -20,5 +20,7 @@ public class DirectoryApp extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
+
+
     }
 }

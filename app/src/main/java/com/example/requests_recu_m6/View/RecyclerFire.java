@@ -48,9 +48,18 @@ public class RecyclerFire extends Fragment {
         miAdapter= new RecyclerFireAdapter(listciu);
         miRecycler.setAdapter(miAdapter);
 
-        Repository rp=Repository.getRepository();
-        rp.getCiud();
-        //mViewModel.getClientes();
+
+
+
+        mViewModel.getLiveList().observe(getViewLifecycleOwner(), new Observer<ArrayList<Ciudadano>>() {
+            @Override
+            public void onChanged(ArrayList<Ciudadano> ciudadanos) {
+                miAdapter.setCiudadano(ciudadanos);
+                miAdapter.notifyDataSetChanged();
+            }
+        });
+
+
 
 
 

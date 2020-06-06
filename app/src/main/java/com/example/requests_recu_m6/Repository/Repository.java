@@ -50,6 +50,10 @@ public class Repository {
         hilo.execute("https://projecterecum8.firebaseio.com/examen/value.json");
     }
 
+    public LiveData<ArrayList<Ciudadano>> getLiveList(){
+        return listaciud;
+    }
+
 
     public class myThread extends AsyncTask<String,Void,String> {
 
